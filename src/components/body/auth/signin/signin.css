@@ -1,0 +1,72 @@
+.body_signin{
+    background-color: #f4f4f4;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.body_signin_form{
+    background-color: #fff;
+    width: 25%;
+    padding: 1rem;
+    box-shadow: 0 2px 5px 0 #eee, 0 2px 5px 0 #eee;
+}
+
+.body_signin_heading{
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin: 3rem 1rem 1rem 1rem;
+}
+
+.body_signin_form input{
+    width: stretch;
+    padding: 0.6rem;
+    margin: 0.2rem;
+    margin: 0.2rem 0 0.8rem 0;
+    border: 1px solid #c4c4c4;
+}
+
+.error_msg{
+    font-size: 0.8rem;
+    color: red;
+}
+
+.body_signin_btn{
+    background-color: #569;
+    width: stretch;
+    color: #fff;
+    text-align: center;
+    padding: 0.4rem 0 0.6rem 0;
+    cursor: pointer;
+}
+
+.body_signin_btn div{
+    width: stretch;
+    text-decoration: none;
+}
+
+.body_signin_other_options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.body_signin_other_options a{
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #222;
+    padding: 1.6rem 0 0.4rem 0;
+}
+
+@media (max-width: 480px){
+    .body_signin_form{
+        background-color: #fff;
+        width: 75%;
+    }
+
+    .body_signin_heading{
+        margin: 2rem 1rem 1rem 1rem;
+    }
+}

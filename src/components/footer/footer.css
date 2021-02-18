@@ -1,0 +1,26 @@
+.footer_container{
+    background-color: #125;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    width: 100%;
+    padding: 0.8rem;
+    position: absolute;
+    bottom: 0px;
+}
+
+.footer_copyright{
+    flex: 2;
+}
+
+.footer_links{
+    flex: 5;
+}
+
+
+@media (max-width: 480px){
+    .footer_copyright{
+        font-size: 0.8rem;
+        flex: 2;
+    }
+}
