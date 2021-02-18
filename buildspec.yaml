@@ -1,0 +1,25 @@
+version: 0.1
+description: build react app
+
+phases:
+  pre_build:
+    commands:
+      - echo nodejs installation...
+      - curl -sL https://deb.nodesource.com/setup_15.x | bash -
+      - apt-get install nodejs -y
+      - echo build stage beginnig...
+
+  build:
+    commands:
+      - echo adding node_modules...
+      - npm install
+      - echo run react build
+      - npm run build
+      - echo build complete!
+      - rm -R *.yaml README* .git*
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'build'
+      
