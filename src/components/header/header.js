@@ -90,7 +90,7 @@ class Header extends Component {
 
                 </div>
                 <div className="header_right">
-                    <Link to="/signin" >Sign in</Link>
+                    <Link to="/" >Sign in</Link>
                     <Link to="/signup" >Sign up</Link>
                 </div>
                 </div>

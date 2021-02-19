@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {Context} from '../../../context.js';
 import axios from 'axios';
 import './dashboard.css';
 
-class MyAccount extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -67,77 +67,11 @@ class MyAccount extends Component {
             )
         }else{
             return ( 
-                <div className="body_myaccount">
-                    <div className="body_myaccount_sets">
+                <div className="body_dashboard">
+                    <div className="body_dashboard_sets">
                     <div className="body_sets_heading_title">
                         Welcome, {this.state.name.split(" ")[0]}
                     </div>
-                    <div className="body_myaccount_sets_heading_details">
-                        {this.state.purchased_sets_msg}
-                    </div>
-                    { this.state.purchased_sets.map(( elem, index ) => (
-                        <div key={"body_set"+index} className="set">
-                            <Link key={"body_set_link"+index} to={{
-                            pathname: "/starting",
-                            state: { 
-                                    title: elem.title,
-                                    description: elem.description,
-                                    image_url: elem.image_url,
-                                    price: elem.price,
-                                    set_id: elem.set_id,
-                                    set: elem.title 
-                                }
-                            }}><div key={"body_set_profile_img"+index} className="set_profile_img">
-                                <img src={elem.image_url} alt={elem.title} />
-                            </div>
-                            <div key={"body_set_details"+index} className="set_details">
-                                <div key={"body_set_title"+index} className="set_title">
-                                    {elem.title.split(" ").splice(0, 8).join(" ")}
-                                </div>
-                                <div key={"body_set_description"+index} className="set_description">
-                                    {elem.description.split(" ").splice(0, 16).join(" ")+"..."}
-                                </div>
-                                <div className="set_price">
-                                    
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        ))}
-                    <div className="body_sets_heading_title">
-                        Recommendations
-                    </div>
-                    { this.state.sets.map(( elem, index ) => (
-                        <div key={"body_set"+index} className="set">
-                            <Link key={"body_set_link"+index} to={{
-                            pathname: "/starting",
-                            state: { 
-                                    title: elem.title,
-                                    description: elem.description,
-                                    image_url: elem.image_url,
-                                    price: elem.price,
-                                    set_id: elem.set_id,
-                                    set: elem.title,
-                                    category: elem.category 
-                                }
-                            }}>
-                            <div key={"body_set_profile_img"+index} className="set_profile_img">
-                                <img src={elem.image_url} alt={elem.title} />
-                            </div>
-                            <div key={"body_set_details"+index} className="set_details">
-                                <div key={"body_set_title"+index} className="set_title">
-                                    {elem.title.split(" ").splice(0, 8).join(" ")}
-                                </div>
-                                <div key={"body_set_description"+index} className="set_description">
-                                    {elem.description.split(" ").splice(0, 16).join(" ")+"..."}
-                                </div>
-                                <div className="set_price">
-                                    ${elem.price}
-                                </div>
-                            </div>
-                            </Link>
-                        </div>
-                        ))}
                 </div>    
                 </div>
             );
@@ -145,4 +79,4 @@ class MyAccount extends Component {
     }
 }
  
-export default MyAccount;
+export default Dashboard;
