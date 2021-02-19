@@ -62,9 +62,14 @@
 }
 
 @media (max-width: 480px){
+    .body_signup{
+        min-height: 100vh;
+    }
+    
     .body_signup_form{
         background-color: #fff;
         width: 65%;
+        margin-bottom: 6rem;
     }
 
     .body_signup_heading{
