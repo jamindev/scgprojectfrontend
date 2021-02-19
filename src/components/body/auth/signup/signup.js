@@ -90,6 +90,14 @@ class Signup extends Component {
                             <input onChange={this.setInput} type="password" id="password" placeholder="password" /><br />
                             Confirm Password<br />
                             <input onChange={this.setInput} type="password" id="confirm_password" placeholder="password" /><br />
+                            Street Address 1<br />
+                            <input onChange={this.setInput} type="text" id="address_1" placeholder="Adress 1" /><br />
+                            Street Address 2<br />
+                            <input onChange={this.setInput} type="text" id="address_2" placeholder="Adress 2" /><br />
+                            City<br />
+                            <input onChange={this.setInput} type="text" id="city" placeholder="City" /><br />
+                            Country<br />
+                            <input onChange={this.setInput} type="text" id="country" placeholder="Country" /><br />
                             <div className="body_signup_terms">
                                 <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                             </div>
