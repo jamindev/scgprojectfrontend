@@ -72,7 +72,7 @@ class Signup extends Component {
             return ( 
                 <div className="body_signup">
                     <div className="body_signup_heading">
-                        Quick sign up!
+                        Sign up
                     </div>
                     <div className="body_signup_form">
                         <form onSubmit={this.signin}>

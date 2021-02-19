@@ -87,7 +87,7 @@ class Signin extends Component {
         return ( 
             <div className="body_signin">
                 <div className="body_signin_heading">
-                    Let's get signed in
+                    Sign In
                 </div>
                 <div className="body_signin_form">
                     <div className="error_msg">
