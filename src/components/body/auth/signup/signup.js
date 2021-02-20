@@ -76,8 +76,10 @@ class Signup extends Component {
                     </div>
                     <div className="body_signup_form">
                         <form onSubmit={this.signin}>
-                            Name<br />
-                            <input onChange={this.setInput} type="text" id="name" placeholder="Alex Tracey" /><br />
+                            First Name<br />
+                            <input onChange={this.setInput} type="text" id="first_name" placeholder="Alex" /><br />
+                            Last Name<br />
+                            <input onChange={this.setInput} type="text" id="last_name" placeholder="Tracey" /><br />
                             Email<br />
                             <div className="error_msg">
                             { this.state.email_exists_msg }

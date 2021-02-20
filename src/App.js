@@ -7,7 +7,6 @@ import SignUp from './components/body/auth/signup/signup.js'
 import Terms from './components/body/termsprivacy/terms.js'
 import Privacy from './components/body/termsprivacy/privacy.js'
 import Dashboard from './components/body/dashboard/dashboard.js';
-import Flashcards from './components/body/flashcards/flashcards.js';
 import ForgotPawword from './components/body/auth/signin/forgotpassword.js';
 import PasswordSent from './components/body/auth/signin/passwordsent.js';
 import Footer from './components/footer/footer.js';
@@ -36,7 +35,6 @@ class App extends Component {
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/flashcards" component={Flashcards} />
         <Route path="/forgotpassword" component={ForgotPawword} />
         <Route path="/passwordsent" component={PasswordSent} />
       <Footer />

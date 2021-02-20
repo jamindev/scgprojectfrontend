@@ -1,14 +1,12 @@
-.body_dashboard{ 
+.body_dashboard_sets{ 
     background-color: #f4f4f4;
     width: 100%;
-    min-height: 100vh;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
-.body_dashboard_container{ 
+.body_dashboard_sets{ 
     background-color: #fff;
+    min-height: 95vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -17,10 +15,14 @@
     flex-wrap: wrap;
 }
 
-.body_dashboard_container div{
-    display: flex;
+.body_myaccount_sets a{
+    text-decoration: none; 
+}
+
+.body_myaccount_sets_heading_details{
     width: 100%;
-} 
+    padding-left: 1.2rem;
+}
 
 @media (max-width: 480px){
     .body_dashboard_sets{ 
@@ -28,7 +30,7 @@
         justify-content: center;
     }
 
-    .body_dashboard_heading_title{
+    .body_myaccount_sets_heading_title{
         font-size: 1.4rem;
         font-weight: bold;
         text-align: left;

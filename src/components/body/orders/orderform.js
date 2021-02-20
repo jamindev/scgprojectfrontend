@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {Context} from '../../../context.js';
 import axios from 'axios';
-import OrderForm from '../orders/orderform'
-import './dashboard.css';
+import './orderform.css';
 
-class Dashboard extends Component {
+class OrderForm extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -58,34 +57,26 @@ class Dashboard extends Component {
 
     
     render() { 
-        if( !this.state.stay_in_myaccount_page ){
-            return (
-            <Redirect to={{
-                pathname: "/",
-                state: {}
-            }}
-            />
-            )
-        }else{
-            return ( 
-                <div className="body_dashboard">
-                    <div className="body_dashboard_container">
-                        <div className="body_sets_heading_title">
-                            Welcome, {this.state.name.split(" ")[0]}
-                            <Link to="/order">
-                                SCG Project
-                            </Link>
-                        </div>
+        return ( 
+            <div className="body_signup_form">
+                <form onSubmit={this.signin}>
+                    Manufacturer<br />
+                    <input onChange={this.setInput} type="text" id="name" placeholder="Alex Tracey" /><br />
+                    Dates<br />
+                    <input onChange={this.setInput} type="text" id="city" placeholder="City" /><br />
+                    Country<br />
+                    <input onChange={this.setInput} type="text" id="country" placeholder="Country" /><br />
+                    <div className="body_signup_terms">
+                        <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                     </div>
-                    <div className="body_dashboard_container">
-                        <div>
-                            <OrderForm />
-                        </div>
-                    </div>    
-                </div>
-            );
-        }
+                    <div onClick={this.signup} className="body_signup_btn">
+                        Place your order
+                    </div>
+                </form>
+            </div>
+        );
+    
     }
 }
  
-export default Dashboard;
+export default OrderForm;
