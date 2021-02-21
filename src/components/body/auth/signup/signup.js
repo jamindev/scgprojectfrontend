@@ -68,7 +68,7 @@ class Signup extends Component {
             body: JSON.stringify(data),
             //mode: 'no-cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/x-www-form-urlencoded' //'application/json'
             }
         })
         .then(res => res.json())
