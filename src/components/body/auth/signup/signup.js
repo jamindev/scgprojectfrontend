@@ -50,22 +50,22 @@ class Signup extends Component {
         }
 
         let data = {
-            first_name,
-            last_name,
-            email,
-            password,
-            gender,
-            date_of_birth,
-            address_1,
-            address_2,
-            city,
-            country,
-            state_or_region
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            password: password,
+            gender: gender,
+            date_of_birth: date_of_birth,
+            address_1: address_1,
+            address_2: address_2,
+            city: city,
+            country: country,
+            state_or_region: state_or_region
         };
             
-        fetch(this.context[5]+"/", {
+        fetch(this.context[5], {
             method: 'POST',
-            body: JSON.stringify(data)//,
+            body: JSON.stringify(data)
             //mode: 'no-cors',
             // headers: {
             //   'Content-Type': 'application/json'
