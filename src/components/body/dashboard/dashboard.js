@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {Context} from '../../../context.js';
 import axios from 'axios';
 import OrderForm from '../orders/orderform'
@@ -72,9 +72,6 @@ class Dashboard extends Component {
                     <div className="body_dashboard_container">
                         <div className="body_sets_heading_title">
                             Welcome, {this.state.name.split(" ")[0]}
-                            <Link to="/order">
-                                SCG Project
-                            </Link>
                         </div>
                     </div>
                     <div className="body_dashboard_container">

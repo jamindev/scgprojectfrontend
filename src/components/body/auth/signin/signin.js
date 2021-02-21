@@ -18,12 +18,9 @@ class Signin extends Component {
     static contextType = Context;
 
     componentDidMount = () => {
-        
-
-        fetch("http://scgprojectapi-env.eba-tt9fpraf.us-east-1.elasticbeanstalk.com?msg=hi")
+        fetch(this.context[5]+"?msg=hello")
         .then(res => res.json())
-        .then(body => console.log(JSON.stringify(body)))
-        //.then(body => (body.message1 ? this.setState({ signin_error_msg: body.message1}) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
+        .then(body => (body ? this.setState({ signin_error_msg: body.message1}) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
         .catch(e => {
             this.setState({ signin_error_msg: "Wrong username or password!" }) 
             console.log(e);

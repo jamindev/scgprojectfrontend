@@ -14,7 +14,7 @@ export const Provider = props => {
     };
     
     //let api_endpoint = "";
-    let api_endpoint = "https://polzkxslpl.execute-api.us-east-1.amazonaws.com/tracsalprep_api";
+    let api_endpoint = "http://scgprojectapi-env.eba-tt9fpraf.us-east-1.elasticbeanstalk.com?msg=hi";
 
     function setSignedIn(status) {
         setSignedin(status);
