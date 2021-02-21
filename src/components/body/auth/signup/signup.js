@@ -152,7 +152,7 @@ class Signup extends Component {
                                     <option>Female</option>
                                 </select>
                                 Date of Birth<br />
-                                <input onChange={this.setInput} type="date" id="address_1" placeholder="Date of Birth" /><br />              
+                                <input onChange={this.setInput} type="date" id="date_of_birth" placeholder="Date of Birth" /><br />              
                             </div>
                             
                             <div className="body_signup_form2">
