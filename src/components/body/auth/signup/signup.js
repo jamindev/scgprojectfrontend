@@ -65,11 +65,11 @@ class Signup extends Component {
             
         fetch(this.context[5]+"/", {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)//,
             //mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json'
-            }
+            // headers: {
+            //   'Content-Type': 'application/json'
+            // }
         })
         .then(res => res.json())
         .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response_msg === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log("Error!")))
