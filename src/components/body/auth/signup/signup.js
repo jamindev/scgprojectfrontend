@@ -146,7 +146,7 @@ class Signup extends Component {
                                 Confirm Password<br />
                                 <input onChange={this.setInput} type="password" id="confirm_password" placeholder="password" /><br />
                                 Gender<br />
-                                <select id="country" onChange={e => {this.setStateOrRegion(e); this.setInput(e)} }>
+                                <select id="gender" onChange={e => {this.setStateOrRegion(e); this.setInput(e)} }>
                                     <option></option>
                                     <option>Male</option>
                                     <option>Female</option>
