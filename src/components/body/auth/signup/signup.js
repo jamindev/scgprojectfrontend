@@ -72,7 +72,7 @@ class Signup extends Component {
             // }
         })
         .then(res => res.json())
-        .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log("Error!")))
+        .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log(JSON.stringify(body))))
         .catch(e => console.log(e));
     }
 
