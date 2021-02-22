@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import axios from 'axios';
 import { Context } from '../../../../context.js'
 import './signin.css';
 
@@ -10,7 +11,7 @@ class Signin extends Component {
             email: "",
             password: "",
             signin_error_msg: "",
-            go_to_myaccount: false
+            go_to_dashboard: false
         }
     }
 
@@ -18,13 +19,7 @@ class Signin extends Component {
     static contextType = Context;
 
     componentDidMount = () => {
-        fetch(this.context[5]+"?msg=hello")
-        .then(res => res.json())
-        .then(body => (body ? this.setState({ signin_error_msg: body.message1}) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
-        .catch(e => {
-            this.setState({ signin_error_msg: "Wrong username or password!" }) 
-            console.log(e);
-        });
+        
     }
 
 
@@ -32,22 +27,19 @@ class Signin extends Component {
         const email = this.state.email;
         const password = this.state.password;
 
-        fetch(this.context[5]+"/signin.php?signin=true&email="+email+"&password="+password)
-        .then(res => res.json())
-        .then(body => (body.response === "success" ? this.goToMyAccount(body.email, body.student_id, body.flashcard_sets_bought) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
-        .catch(e => {
-            this.setState({ signin_error_msg: "Wrong username or password!" }) 
-            console.log(e);
-        });
+        axios.get(this.context[5]+"/signin.php?signin=true&email="+email+"&password="+password)
+        .then(body => (body.data.response === "success" ? this.goToDashboard(body.data.email, body.data.id) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
+        .catch(e => console.log(e));
+    
     }
 
 
-    goToMyAccount = (email, id, flashcard_sets_bought) => {
+    goToDashboard = (email, id) => {
         localStorage.setItem("flashcards_stdtkto_active", true);
         localStorage.setItem("flashcards_stdtkto_email", email);
         localStorage.setItem("flashcards_stdtkto_id", id);
-        localStorage.setItem("flashcards_stdtkto_flashcard_sets_bought", flashcard_sets_bought);
         this.context[1](true);
+        this.setState({ go_to_dashboard: true });
     }
 
 
@@ -60,7 +52,7 @@ class Signin extends Component {
 
 
     render() { 
-        if( this.state.go_to_myaccount ){
+        if( this.state.go_to_dashboard ){
             return (
                 <Redirect to={{
                     pathname: "/dashboard",

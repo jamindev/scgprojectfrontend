@@ -17,31 +17,7 @@ class Header extends Component {
     componentDidMount = () => {
         this.setState({ signed_ina: this.context[2] });
         if(localStorage.getItem("flashcards_stdtkto_email") !== null ){
-            if(localStorage.getItem("flashcards_stdtkto_email").length > 0 ){
-                this.refreshCart();
-            }
-        }else{
-            this.context[3](0);
-        }
-    }
-
-
-    refreshCart = () => {
-        let email = localStorage.getItem("flashcards_stdtkto_email");       
-        let id = localStorage.getItem("flashcards_stdtkto_id");
-        if( !email || !id ){
-            email = id = "";
-        }
-        fetch(this.context[5]+"/sets_id_cart?email="+email+"&id="+id)
-        .then(res => res.json())
-        .then(body => (body ? (body.response_msg === "posted" ? this.setCart(body) : console.log( "could not refresh cart" )): console.log("returned null "+body)))
-        .catch(e => console.log(e));
-    }
-
-    setCart = (sets) => {
-        localStorage.setItem("flashcards_stdtkto_sets_in_cart", JSON.stringify(sets.returned_sets[0].cart));
-        if( sets.returned_sets[0].cart ){
-            this.context[3](sets.returned_sets[0].cart.length);
+            
         }else{
             this.context[3](0);
         }
