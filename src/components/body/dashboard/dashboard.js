@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import {Context} from '../../../context.js';
 import axios from 'axios';
-import OrderForm from '../orders/orderform'
+import OrderForm from '../orders/orderform';
 import './dashboard.css';
 
 class Dashboard extends Component {
@@ -65,7 +65,7 @@ class Dashboard extends Component {
                         </div>
                     </div>
                     <div className="body_dashboard_container">
-                        <div>
+                        <div className="orders">
                             <OrderForm />
                         </div>
                     </div>    

@@ -9,12 +9,13 @@ class OrderForm extends Component {
         super(props);
         this.state = { 
             email: "",
+            id: "",
             year_options: [],
             stay_in_myaccount_page: true,
-            id: "",
             manufacturer: "",
             years: [],
-            condition_description: ""
+            condition_description: "",
+            order_stage: "Order form"
         }
     }
 
@@ -38,12 +39,18 @@ class OrderForm extends Component {
         let order_details = new FormData();
 
         order_details.append("place_order", true);
+        order_details.append("email", this.state.email);
+        order_details.append("id", this.state.id);
         order_details.append("manufacturer", this.state.manufacturer);
         order_details.append("years", this.state.years);
         order_details.append("condition_description", this.state.condition_description);
         
-        axios.post(this.context[5]+"/dashboard.php", order_details)
-        .then(body => (body.data.response_msg === "order_placed"? this.setAccountDetails(body.data): console.log("An error occured")))
+        axios.post(this.context[5]+"/dashboard.php", order_details, {
+            headers: {
+                'Content-Type': 'multipart/form-data' 
+            }
+        })
+        .then(body => (body.data.response === "order_placed" ? this.setState({ order_stage: "Confirmation" }): console.log("An error occured")))
         .catch(e => console.log(e));
     }
 
@@ -57,9 +64,9 @@ class OrderForm extends Component {
     
 
     render() { 
-        return ( 
-            <div className="body_order_form">
-                <form onSubmit={this.placeOrder}>
+        if( this.state.order_stage === "Order form" ){ 
+            return ( 
+                <div className="body_order_form">
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
                     Years<br />
@@ -74,12 +81,41 @@ class OrderForm extends Component {
                     <div className="body_order_terms">
                         <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                     </div>
-                    <div onClick={this.signup} className="body_order_btn">
-                        Place your order
+                    <div onClick={() => {this.setState({ order_stage: "Payment form" })}} className="body_order_btn">
+                        Next: Payment Information
                     </div>
-                </form>
-            </div>
-        );
+                </div>
+            );
+        }else if(this.state.order_stage === "Payment form"){
+            return ( 
+                <div className="body_order_form">
+                    <h3>Payment Information</h3>
+                    <p>
+                        Payment details will be collected or confirmed here if already collected in a previous tansaction.
+                    </p>
+                    <form onSubmit={this.placeOrder}>
+                        <div className="body_order_terms">
+                            <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
+                        </div>
+                        <div onClick={this.placeOrder} className="body_order_btn">
+                            Place your order
+                        </div>
+                    </form>
+                </div>
+            );
+        }else if(this.state.order_stage === "Confirmation"){
+            return ( 
+                <div className="body_order_form">
+                    <h3>Thank you!</h3>
+                    <p>
+                        Order was successfully placed. Please send your sports cards to our specilists' address: 5555 ABC DR. Knoxville, TN United States, 00000 
+                    </p>
+                    <div className="body_order_terms">
+                        <Link onClick={() => {this.setState({order_stage: "Order form"})}}>Place another order</Link>
+                    </div>
+                </div>
+            );
+        }
     
     }
 }
