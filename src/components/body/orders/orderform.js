@@ -9,6 +9,7 @@ class OrderForm extends Component {
         super(props);
         this.state = { 
             email: "",
+            year_options: [],
             stay_in_myaccount_page: true,
             id: "",
             manufacturer: "",
@@ -23,6 +24,13 @@ class OrderForm extends Component {
         const id = localStorage.getItem("flashcards_stdtkto_id");
         const email = localStorage.getItem("flashcards_stdtkto_email");       
         this.setState({email, id});
+        let year_options = []; 
+        let maxOffset = 80;
+        let currentYear = (new Date()).getFullYear();
+        for(let i = 0; i <= maxOffset; i++) {
+            year_options.push(currentYear - i)
+        }
+        this.setState({year_options});
     }
 
 
@@ -55,7 +63,12 @@ class OrderForm extends Component {
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
                     Years<br />
-                    <input onChange={this.setInput} type="date" id="yaers" placeholder="Years" /><br />
+                    <select>
+                        <option></option>
+                        {this.state.year_options.map((elem, index) => (
+                            <option key={index}>{elem}</option>
+                        ))}
+                    </select>
                     Condition Description<br />
                     <textarea onChange={this.setInput} type="text" id="condition_description" placeholder="Condition description" /><br />
                     <div className="body_order_terms">
