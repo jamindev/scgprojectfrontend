@@ -32,7 +32,7 @@ class Signin extends Component {
         const email = this.state.email;
         const password = this.state.password;
 
-        fetch(this.context[5]+"?signin=true&email="+email+"&password="+password)
+        fetch(this.context[5]+"/signin.php?signin=true&email="+email+"&password="+password)
         .then(res => res.json())
         .then(body => (body.response === "success" ? this.goToMyAccount(body.email, body.student_id, body.flashcard_sets_bought) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
         .catch(e => {

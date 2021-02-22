@@ -95,7 +95,7 @@ class Signup extends Component {
         data.append("state_or_region", this.state.state_or_region);
 
         try{
-        await axios.post(this.context[5]+"/signin.php", data, {
+        await axios.post(this.context[5], data, {
             headers: {
                 'Content-Type': 'multipart/form-data' 
             }
