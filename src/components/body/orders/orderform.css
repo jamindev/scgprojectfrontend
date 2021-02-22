@@ -1,38 +1,65 @@
-.body_dashboard_sets{ 
-    background-color: #f4f4f4;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.body_dashboard_sets{ 
+.body_order_form{
     background-color: #fff;
-    min-height: 95vh;
+    width: 40%;
+    padding: 2rem;
+    box-shadow: 0 2px 5px 0 #eee, 0 2px 5px 0 #eee;
+    margin-bottom: 6rem;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    margin: 2rem 24rem;
-    padding: 2.4rem;
     flex-wrap: wrap;
 }
 
-.body_myaccount_sets a{
-    text-decoration: none; 
+.body_order_heading{
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
 }
 
-.body_myaccount_sets_heading_details{
-    width: 100%;
-    padding-left: 1.2rem;
+.body_order_form input, textarea{
+    width: stretch;
+    padding: 0.6rem;
+    margin: 0.2rem;
+    margin: 0.2rem 0 0.8rem 0;
+    border: 1px solid #c4c4c4;
 }
 
-@media (max-width: 480px){
-    .body_dashboard_sets{ 
-        padding: 1rem;
-        justify-content: center;
-    }
+.body_order_form select{
+    width: stretch;
+    padding: 0.6rem;
+    margin: 0.2rem;
+    margin: 0.2rem 0 0.8rem 0;
+    border: 1px solid #c4c4c4;
+}
 
-    .body_myaccount_sets_heading_title{
-        font-size: 1.4rem;
-        font-weight: bold;
-        text-align: left;
-    }
+.error_msg{
+    font-size: 0.8rem;
+    color: red;
+}
+
+.body_order_btn{
+    background-color: orange;
+    width: stretch;
+    color: #444;
+    text-align: center;
+    padding: 0.4rem 0 0.6rem 0;
+    cursor: pointer;
+}
+
+.body_order_btn div{
+    width: stretch;
+    text-decoration: none;
+}
+
+.body_order_terms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    font-size: 0.8rem;
+    padding: 1rem;
+}
+
+.body_order_terms a{
+    text-decoration: none;
+    color: #125;
 }

@@ -11,7 +11,7 @@ class Footer extends Component {
         return ( 
             <div className="footer_container">
                 <div className="footer_copyright">
-                    TracsalPrep @Copyright 2020
+                    SCGProject @Copyright 2021
                 </div>
                 <div className="links">
 

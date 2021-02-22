@@ -27,10 +27,9 @@ class Dashboard extends Component {
         }
 
         const id = localStorage.getItem("scgproject_stdtkto_id");
-        const email = localStorage.getItem("scgproject_stdtkto_email");       
-        console.log(email)
+        const email = localStorage.getItem("scgproject_stdtkto_email");
 
-        axios.get(this.context[5]+"/dashboard.php?myprofile=true&email="+email)
+        axios.get(this.context[5]+"/dashboard.php?myprofile=true&email="+email+"&id="+id)
         .then(body => (body.data.response === "retrieved" ? this.setAccountDetails(body.data): console.log("An error occured"+JSON.stringify(body))))
         .catch(e => console.log(e));
     }
