@@ -32,9 +32,9 @@ class Signin extends Component {
         const email = this.state.email;
         const password = this.state.password;
 
-        fetch(this.context[5]+"/signin?email="+email+"&password="+password)
+        fetch(this.context[5]+"?signin=true&email="+email+"&password="+password)
         .then(res => res.json())
-        .then(body => (body.response_msg === "posted" ? this.goToMyAccount(body.email, body.student_id, body.flashcard_sets_bought) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
+        .then(body => (body.response === "success" ? this.goToMyAccount(body.email, body.student_id, body.flashcard_sets_bought) : this.setState({ signin_error_msg: "Wrong username or password!" }) ))
         .catch(e => {
             this.setState({ signin_error_msg: "Wrong username or password!" }) 
             console.log(e);
@@ -48,31 +48,6 @@ class Signin extends Component {
         localStorage.setItem("flashcards_stdtkto_id", id);
         localStorage.setItem("flashcards_stdtkto_flashcard_sets_bought", flashcard_sets_bought);
         this.context[1](true);
-        this.refreshCart()    
-    }
-
-    
-    refreshCart = () => {
-        let email = localStorage.getItem("flashcards_stdtkto_email");
-        let id = localStorage.getItem("flashcards_stdtkto_id");
-        
-        fetch(this.context[5]+"/sets_id_cart?email="+email+"&id="+id)
-        .then(res => res.json())
-        .then(body => (body.response_msg === "posted" ? this.setCart(body.returned_sets) : console.log( "this is "+JSON.stringify(body) )))
-        .catch(e => console.log("hgjg "+e));
-    }
-
-    setCart = (sets) => {
-        localStorage.setItem("flashcards_stdtkto_sets_in_cart", sets);
-        if( sets.returned_sets ){
-            if( sets.returned_sets[0].cart ){
-                this.context[3](sets.returned_sets[0].cart.length);
-                this.setState({ go_to_myaccount: true})       
-            }
-        }else{
-            this.context[3](0);
-            this.setState({ go_to_myaccount: true})       
-        }
     }
 
 
@@ -88,7 +63,7 @@ class Signin extends Component {
         if( this.state.go_to_myaccount ){
             return (
                 <Redirect to={{
-                    pathname: "/myaccount",
+                    pathname: "/dashboard",
                     state: {}
                 }} 
                 />

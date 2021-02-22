@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 import { Context } from '../../../../context.js'
+
 import './signup.css';
 var jsondata = require('./address.json');
 
@@ -30,50 +32,84 @@ class Signup extends Component {
 
     static contextType = Context;
 
-    signup = () => {
-        const first_name = this.state.name;
-        const last_name = this.state.name;
-        const email = this.state.email;
-        const password = this.state.password;
-        const confirm_password = this.state.confirm_password;
-        const gender = this.state.gender;
-        const date_of_birth = this.state.date_of_birth;
-        const address_1 = this.state.address_1;
-        const address_2 = this.state.address_2;
-        const city = this.state.city;
-        const country = this.state.country;
-        const state_or_region = this.state.state_or_region;
+    signup = async (event) => {
+        // const first_name = this.state.name;
+        // const last_name = this.state.name;
+        // const email = this.state.email;
+        // const password = this.state.password;
+        // const confirm_password = this.state.confirm_password;
+        // const gender = this.state.gender;
+        // const date_of_birth = this.state.date_of_birth;
+        // const address_1 = this.state.address_1;
+        // const address_2 = this.state.address_2;
+        // const city = this.state.city;
+        // const country = this.state.country;
+        // const state_or_region = this.state.state_or_region;
 
-        if( password !== confirm_password ){
-            this.setState({"password_error": "Make sure the passwords match."});
-            return;
-        }
+        // if( password !== confirm_password ){
+        //     this.setState({"password_error": "Make sure the passwords match."});
+        //     return;
+        // }
 
-        let data = {
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            password: password,
-            gender: gender,
-            date_of_birth: date_of_birth,
-            address_1: address_1,
-            address_2: address_2,
-            city: city,
-            country: country,
-            state_or_region: state_or_region
-        };
+        // let data = {
+        //     first_name: first_name,
+        //     last_name: last_name,
+        //     email: email,
+        //     password: password,
+        //     gender: gender,
+        //     date_of_birth: date_of_birth,
+        //     address_1: address_1,
+        //     address_2: address_2,
+        //     city: city,
+        //     country: country,
+        //     state_or_region: state_or_region
+        // };
             
-        fetch(this.context[5], {
-            method: 'POST',
-            body: JSON.stringify(data),
-            //mode: 'no-cors',
+        // fetch(this.context[5], {
+        //     method: 'POST',
+        //     body: JSON.stringify(data),
+        //     //mode: 'no-cors',
+        //     headers: {
+        //       'Content-Type': 'application/x-www-form-urlencoded' //'application/json'
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log(JSON.stringify(body))))
+        // .catch(e => console.log(e));
+        event.preventDefault();
+
+        let data = new FormData();
+
+        data.append("signup", true);
+        data.append("first_name", this.state.first_name);
+        data.append("last_name", this.state.last_name);
+        data.append("email", this.state.email);
+        data.append("password", this.state.password);
+        data.append("onfirm_password", this.state.confirm_password);
+        data.append("gender", this.state.gender);
+        data.append("date_of_birth", this.state.date_of_birth);
+        data.append("address_1", this.state.address_1);
+        data.append("address_2", this.state.address_2);
+        data.append("city", this.state.city);
+        data.append("country", this.state.country);
+        data.append("state_or_region", this.state.state_or_region);
+
+        try{
+        await axios.post(this.context[5], data, {
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded' //'application/json'
+                'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(res => res.json())
-        .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log(JSON.stringify(body))))
-        .catch(e => console.log(e));
+        .then(body => (body.data.response === "posted" ? this.goToDashboard(body.data.email, body.data.id) : body.data.response === "Email is already being used!" ? this.setState({ email_exists_msg: body.data.response }): console.log(JSON.stringify(body)+" plus more stuff")))
+        .catch((error) => console.log("Error: unable adding category!"));
+        }catch(err){
+            if(err.response.status === 500 ){
+                console.log(" There was a problem with the server.");
+            }else{
+                console.log(err.response.data.msg);
+            }
+        }
+
     }
 
 
@@ -82,7 +118,7 @@ class Signup extends Component {
         localStorage.setItem("scgproject_stdtkto_email", email);
         localStorage.setItem("scgproject_stdtkto_id", id);
         this.context[1](true);
-        console.log(email+" was successfully registered");
+        this.setState({ go_to_dashboard: true})
         //send email
         // fetch(this.context[5]+"/signup_confirmation_email?email="+this.state.email)
         // .then(res => res.json())
@@ -112,11 +148,13 @@ class Signup extends Component {
 
     
     render() { 
-        if( this.state.go_to_myaccount ){
+        if( this.state.go_to_dashboard ){
             return (
                 <Redirect to={{
-                    pathname: "/myaccount",
-                    state: {}
+                    pathname: "/dashboard",
+                    state: {
+                        "email": this.state.email
+                    }
                 }} 
                 />
             );

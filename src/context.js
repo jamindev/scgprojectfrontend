@@ -7,14 +7,14 @@ export const Provider = props => {
     let [sets_in_cart, updatecart] = useState(0); 
          
     let data = {
-        signed_in: (localStorage.getItem("flashcards_stdtkto_active") === "true"), 
-        stay: localStorage.getItem("flashcards_stdtkto_active"),
-        id: localStorage.getItem("flashcards_stdtkto_id"),
-        email: localStorage.getItem("flashcards_stdtkto_email")            
+        signed_in: (localStorage.getItem("scgproject_stdtkto_active") === "true"), 
+        stay: localStorage.getItem("scgproject_stdtkto_active"),
+        id: localStorage.getItem("scgproject_stdtkto_id"),
+        email: localStorage.getItem("scgproject_stdtkto_email")            
     };
     
     //let api_endpoint = "";
-    let api_endpoint = "http://scgprojectapi-env.eba-tt9fpraf.us-east-1.elasticbeanstalk.com?msg=hi";
+    let api_endpoint = "http://scgprojectapi-env.eba-tt9fpraf.us-east-1.elasticbeanstalk.com";
 
     function setSignedIn(status) {
         setSignedin(status);

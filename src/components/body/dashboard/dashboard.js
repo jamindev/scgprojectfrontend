@@ -14,7 +14,7 @@ class Dashboard extends Component {
             sets: [],
             purchased_sets: [],
             purchased_sets_msg: "",
-            stay_in_myaccount_page: true
+            stay_on_dashboard: true
         }
     }
 
@@ -23,42 +23,42 @@ class Dashboard extends Component {
     componentDidMount = () => {
         const stay = this.context[0].signed_in;
         if( stay ){
-            this.setState({ stay_in_myaccount_page: this.context[0].signed_in })
+            this.setState({ stay_on_dashboard: this.context[0].signed_in })
         }
 
-        const id = localStorage.getItem("flashcards_stdtkto_id");
-        const email = localStorage.getItem("flashcards_stdtkto_email");       
+        const id = localStorage.getItem("scgproject_stdtkto_id");
+        const email = localStorage.getItem("scgproject_stdtkto_email");       
+        console.log(email)
         
-        axios.get(this.context[5]+"/myaccount?email="+email+"&id="+id)
-        .then(body => (body.data.response_msg === "posted"? this.setAccountDetails(body.data): console.log("An error occured")))
-        .catch(e => console.log(e));
-    }
+        let data = new FormData();
 
-    setSets = (sets) => {
-        sets = sets.filter(elem => elem.publish_set === "yes" );
-        this.setState({ sets: sets });
+        data.append("myprofile", true);
+        data.append("email", email);
         
-        fetch(this.context[5]+"/purchased_sets?flashcard_sets_bought="+this.state.flashcard_sets_bought)
-        .then(res => res.json())
-        .then((body) => (body.response_msg === "posted" ? this.setState({ purchased_sets: body.returned_sets }, () => (body.returned_sets.length === 0) ? this.setState({ purchased_sets_msg: "You currently have no flashcards!" }): this.setState({ purchased_sets_msg: "Your flashcard sets" })): this.setState({ response: "Could not scan categories table!" }) ))
-        .catch((error) => console.log(error+"Error: unable to add category!"))
+        axios.get(this.context[5]+"/dashboard.php", data, {
+            headers: {
+                'Content-Type': 'multipart/form-data' 
+            }
+        })
+        .then(body => (body.data.response === "retrieved" ? this.setAccountDetails(body.data): console.log("An error occured"+JSON.stringify(body))))
+        .catch(e => console.log(e));
     }
     
 
     setAccountDetails = ( details ) => {
-        this.setState({ details: details });
-        this.setState({ name: details.name });
-        this.setState({ flashcard_sets_bought: details.flashcard_sets_bought }, () => {
-        fetch(this.context[5]+"/all_sets")
-            .then(res => res.json())
-            .then((body) => (body.response_msg === "posted" ? this.setSets( body.returned_sets ): this.setState({ response: "Could not scan categories table!" }) ))
-            .catch((error) => console.log(error+"Error: unable to add category!"))
-        });
+        this.setState({ first_name: details.first_name });
+        this.setState({ city: details.city });
+        // this.setState({ flashcard_sets_bought: details.flashcard_sets_bought }, () => {
+        // fetch(this.context[5]+"/all_sets")
+        //     .then(res => res.json())
+        //     .then((body) => (body.response_msg === "posted" ? this.setSets( body.returned_sets ): this.setState({ response: "Could not scan categories table!" }) ))
+        //     .catch((error) => console.log(error+"Error: unable to add category!"))
+        // });
     }
 
     
     render() { 
-        if( !this.state.stay_in_myaccount_page ){
+        if( !this.state.stay_on_dashboard ){
             return (
             <Redirect to={{
                 pathname: "/",
@@ -71,7 +71,7 @@ class Dashboard extends Component {
                 <div className="body_dashboard">
                     <div className="body_dashboard_container">
                         <div className="body_sets_heading_title">
-                            Welcome, {this.state.name.split(" ")[0]}
+                            Welcome, {this.state.first_name}
                         </div>
                     </div>
                     <div className="body_dashboard_container">
