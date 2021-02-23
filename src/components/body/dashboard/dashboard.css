@@ -9,7 +9,7 @@
 
 .body_dashboard_container1{ 
     background: linear-gradient(to left, rgba(255,255,255,0), 40%, rgba(255,255,255,1) 100%), #fff url("/baseball.jpg") no-repeat;
-    background-size: 60%;
+    background-size: 50%;
     background-position: right;
     display: flex;
     flex-direction: column;
