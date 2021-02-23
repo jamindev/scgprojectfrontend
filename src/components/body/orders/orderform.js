@@ -22,8 +22,8 @@ class OrderForm extends Component {
     static contextType = Context;
 
     componentDidMount = () => {
-        const id = localStorage.getItem("flashcards_stdtkto_id");
-        const email = localStorage.getItem("flashcards_stdtkto_email");       
+        const id = localStorage.getItem("scgproject_stdtkto_id");
+        const email = localStorage.getItem("scgproject_stdtkto_email");       
         this.setState({email, id});
         let year_options = []; 
         let maxOffset = 80;
@@ -39,18 +39,17 @@ class OrderForm extends Component {
         let order_details = new FormData();
 
         order_details.append("place_order", true);
-        order_details.append("email", this.state.email);
         order_details.append("id", this.state.id);
         order_details.append("manufacturer", this.state.manufacturer);
-        order_details.append("years", this.state.years);
+        order_details.append("years", JSON.stringify(this.state.years));
         order_details.append("condition_description", this.state.condition_description);
-        
+
         axios.post(this.context[5]+"/dashboard.php", order_details, {
             headers: {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(body => (body.data.response === "order_placed" ? this.setState({ order_stage: "Confirmation" }): console.log("An error occured")))
+        .then(body => (body.data.response === "order_placed" ? this.setState({order_stage: "Confirmation"}) : console.log("An error occured")))
         .catch(e => console.log(e));
     }
 
@@ -61,6 +60,15 @@ class OrderForm extends Component {
 
         this.setState({ [id]: val });
     }
+
+    addYear = (event) => {
+        let val = event.target.value;
+
+        let years = this.state.years;
+        years.push(val);
+
+        this.setState({ years });
+    }
     
 
     render() { 
@@ -70,7 +78,7 @@ class OrderForm extends Component {
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
                     Years<br />
-                    <select>
+                    <select id="years" onChange={this.addYear}>
                         <option></option>
                         {this.state.year_options.map((elem, index) => (
                             <option key={index}>{elem}</option>
@@ -111,7 +119,7 @@ class OrderForm extends Component {
                         Order was successfully placed. Please send your sports cards to our specilists' address: 5555 ABC DR. Knoxville, TN United States, 00000 
                     </p>
                     <div className="body_order_terms">
-                        <Link onClick={() => {this.setState({order_stage: "Order form"})}}>Place another order</Link>
+                        <div onClick={() => {this.setState({order_stage: "Order form"})}}>Place another order</div>
                     </div>
                 </div>
             );

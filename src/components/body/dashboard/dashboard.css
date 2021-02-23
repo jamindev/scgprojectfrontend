@@ -7,8 +7,10 @@
     flex-direction: column;
 }
 
-.body_dashboard_container{ 
-    background-color: #fff;
+.body_dashboard_container1{ 
+    background: linear-gradient(to left, rgba(255,255,255,0), 40%, rgba(255,255,255,1) 100%), #fff url("/baseball.jpg") no-repeat;
+    background-size: 60%;
+    background-position: right;
     display: flex;
     flex-direction: row;
     margin: 2rem 24rem;
@@ -16,10 +18,33 @@
     flex-wrap: wrap;
 }
 
-.body_dashboard_container div{
+.body_dashboard_container1 div{
     display: flex;
     width: 100%;
 } 
+
+.body_dashboard_container2{ 
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 24rem;
+    margin-bottom: 10rem;
+    padding: 2.4rem;
+    flex-wrap: wrap;
+}
+
+.body_dashboard_container2 div{
+    display: flex;
+    width: 100%;
+} 
+
+.body_dashboard_order_stats{
+    padding-top: 10rem;
+}
+
+.body_dashboard_order_stats h2, p{
+    width: 100%;
+}
 
 @media (max-width: 480px){
     .body_dashboard_sets{ 

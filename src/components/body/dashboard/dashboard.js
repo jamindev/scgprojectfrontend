@@ -59,12 +59,15 @@ class Dashboard extends Component {
         }else{
             return ( 
                 <div className="body_dashboard">
-                    <div className="body_dashboard_container">
+                    <div className="body_dashboard_container1">
                         <div className="body_sets_heading_title">
                             Welcome, {this.state.first_name}
                         </div>
+                        <div className="body_dashboard_order_stats">
+                            <p><strong>Num</strong> orders pending</p>
+                        </div>
                     </div>
-                    <div className="body_dashboard_container">
+                    <div className="body_dashboard_container2">
                         <div className="orders">
                             <OrderForm />
                         </div>
