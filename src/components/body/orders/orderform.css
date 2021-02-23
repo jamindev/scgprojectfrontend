@@ -44,14 +44,10 @@
     background-color: orange;
     width: stretch;
     color: #444;
+    align-self: center;
     text-align: center;
     padding: 0.4rem 0 0.6rem 0;
     cursor: pointer;
-}
-
-.body_order_btn div{
-    width: stretch;
-    text-decoration: none;
 }
 
 .body_order_terms{
@@ -66,4 +62,11 @@
 .body_order_terms a{
     text-decoration: none;
     color: #125;
+}
+
+@media (max-width: 480px){
+    .body_order_form{
+        background-color: #fff;
+        width: 80%;
+    }    
 }
