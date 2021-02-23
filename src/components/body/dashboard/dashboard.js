@@ -64,11 +64,14 @@ class Dashboard extends Component {
                             Welcome, {this.state.first_name}
                         </div>
                         <div className="body_dashboard_order_stats">
-                            <p><strong>Num</strong> orders pending</p>
+                            Num orders pending
                         </div>
                     </div>
                     <div className="body_dashboard_container2">
-                        <div className="orders">
+                        <div className="body_dashboard_orders_heading">
+                            Place an order
+                        </div>
+                        <div className="body_dashboard_orders">
                             <OrderForm />
                         </div>
                     </div>    

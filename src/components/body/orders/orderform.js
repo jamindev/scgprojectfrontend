@@ -61,11 +61,10 @@ class OrderForm extends Component {
         this.setState({ [id]: val });
     }
 
-    addYear = (event) => {
-        let val = event.target.value;
-
+    addYearToArray = () => {
+        let year = document.getElementById("years").value;
         let years = this.state.years;
-        years.push(val);
+        years.push(year);
 
         this.setState({ years });
     }
@@ -78,12 +77,28 @@ class OrderForm extends Component {
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
                     Years<br />
-                    <select id="years" onChange={this.addYear}>
-                        <option></option>
-                        {this.state.year_options.map((elem, index) => (
-                            <option key={index}>{elem}</option>
-                        ))}
-                    </select>
+                    <div className="body_dashboard_years_container">
+                        <div className="body_dashboard_years">
+                            <select id="years">
+                                <option></option>
+                                {this.state.year_options.map((elem, index) => (
+                                    <option key={index}>{elem}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div onClick={this.addYearToArray} className="body_dashboard_add_year_btn">
+                            Add year(s)
+                        </div>
+                    </div>
+                    
+                    <div className="body_dashboard_years_container">
+                        <div className="body_dashboard_years_selected">
+                            {this.state.years.map((elem, index) => (
+                                <div key={index}>{elem}</div>
+                            ))}
+                        </div>
+                    </div>
+
                     Condition Description<br />
                     <textarea onChange={this.setInput} type="text" id="condition_description" placeholder="Condition description" /><br />
                     <div className="body_order_terms">

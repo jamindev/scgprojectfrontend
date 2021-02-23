@@ -12,13 +12,17 @@
     background-size: 60%;
     background-position: right;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    text-align: left;
     margin: 2rem 24rem;
     padding: 2.4rem;
 }
 
 .body_dashboard_container1 div{
-    display: flex;
+    width: 100%;
+    text-align: left;
 } 
 
 .body_dashboard_container2{ 
@@ -33,7 +37,14 @@
 
 .body_dashboard_container2 div{
     display: flex;
+    flex-direction: row;
 } 
+
+.body_dashboard_orders_heading{
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin: 0rem 0 1rem 0;
+}
 
 .body_dashboard_order_stats{
     padding-top: 10rem;
@@ -41,6 +52,10 @@
 
 .body_dashboard_order_stats h2, p{
     width: 100%;
+}
+
+.body_dashboard_orders{
+    margin: 0 auto;
 }
 
 @media (max-width: 480px){

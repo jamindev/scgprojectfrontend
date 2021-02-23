@@ -1,11 +1,11 @@
 .body_order_form{
     background-color: #fff;
-    width: 40%;
+    width: 60%;
     padding: 2rem;
     box-shadow: 0 2px 5px 0 #eee, 0 2px 5px 0 #eee;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
@@ -40,13 +40,41 @@
     color: red;
 }
 
+.body_dashboard_years_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.body_dashboard_years_container div{
+    width: 100%;
+}
+
+.body_dashboard_years{
+    flex: 4;
+}
+
+.body_dashboard_add_year_btn{
+    background-color: #569;
+    flex: 1;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+
 .body_order_btn{
     background-color: orange;
     width: stretch;
     color: #444;
-    align-self: center;
+    padding: 0.7rem;
     text-align: center;
-    padding: 0.4rem 0 0.6rem 0;
     cursor: pointer;
 }
 
