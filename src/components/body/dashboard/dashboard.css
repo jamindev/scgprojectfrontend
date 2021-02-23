@@ -16,7 +16,7 @@
     justify-content: flex-start;
     align-content: flex-start;
     text-align: left;
-    margin: 2rem 24rem;
+    margin: 2rem 18rem;
     padding: 2.4rem;
 }
 
@@ -29,7 +29,7 @@
     background-color: #fff;
     display: flex;
     flex-direction: row;
-    margin: 2rem 24rem;
+    margin: 2rem 18rem;
     margin-bottom: 10rem;
     padding: 2.4rem;
     flex-wrap: wrap;
