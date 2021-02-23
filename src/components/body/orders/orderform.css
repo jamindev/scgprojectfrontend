@@ -64,6 +64,8 @@
     width: 20%;
     background-color: #acf;
     padding: 0.2rem;
+    margin: 0.1rem;
+    cursor: pointer;
 }
 
 .body_dashboard_years_container{

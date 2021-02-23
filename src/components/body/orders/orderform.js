@@ -94,6 +94,13 @@ class OrderForm extends Component {
         console.log(val);
         this.setState({ order_years: val });
     }
+
+    removeYear = (index) => {
+        let years = this.state.years;
+        years.splice(index, 1);
+
+        this.setState({ years });
+    }
     
 
     render() { 
@@ -140,7 +147,7 @@ class OrderForm extends Component {
                     <div className="body_dashboard_years_container">
                         <div className="body_dashboard_years_selected">
                             {this.state.years.map((elem, index) => (
-                                <div key={index} className="body_dashboard_year_selected">{elem}</div>
+                                <div key={index} className="body_dashboard_year_selected" onClick={() => (this.removeYear(index))}>{elem}</div>
                             ))}
                         </div>
                     </div>
