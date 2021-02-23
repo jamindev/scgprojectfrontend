@@ -35,12 +35,10 @@
     flex-wrap: wrap;
 }
 
-.body_dashboard_container2 div{
+.body_dashboard_orders_heading{
+    width: 100%;
     display: flex;
     flex-direction: row;
-} 
-
-.body_dashboard_orders_heading{
     font-weight: 300;
     font-size: 1.8rem;
     margin: 0rem 0 1rem 0;
@@ -55,6 +53,9 @@
 }
 
 .body_dashboard_orders{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     margin: 0 auto;
 }
 
@@ -72,7 +73,8 @@
     }
     
     .body_dashboard_container2{ 
-        margin: 2rem 0rem;
+        margin: 2rem 0rem 4rem 0rem;
+        padding: 1rem;
     }
 
 }

@@ -40,10 +40,36 @@
     color: red;
 }
 
+.body_dashboard_signle_or_range_of_years{
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 0.4rem;
+}
+
+.body_dashboard_signle_or_range_of_years input{
+    width: 20px;
+}
+
+.body_dashboard_years_selected{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.body_dashboard_year_selected{
+    width: 20%;
+    background-color: #acf;
+    padding: 0.2rem;
+}
+
 .body_dashboard_years_container{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
@@ -55,6 +81,11 @@
 
 .body_dashboard_years{
     flex: 4;
+}
+
+.body_dashboard_years_to{
+    flex: 1;
+    padding: 1rem;
 }
 
 .body_dashboard_add_year_btn{
@@ -72,7 +103,7 @@
 .body_order_btn{
     background-color: orange;
     width: stretch;
-    color: #444;
+    color: #000;
     padding: 0.7rem;
     text-align: center;
     cursor: pointer;
@@ -97,4 +128,8 @@
         background-color: #fff;
         width: 80%;
     }    
+
+    .body_dashboard_add_year_btn{
+        font-size: 14px;
+    }
 }

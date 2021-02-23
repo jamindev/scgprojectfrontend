@@ -11,6 +11,7 @@ class OrderForm extends Component {
             email: "",
             id: "",
             year_options: [],
+            order_years: "single_year",
             stay_in_myaccount_page: true,
             manufacturer: "",
             years: [],
@@ -41,9 +42,9 @@ class OrderForm extends Component {
         order_details.append("place_order", true);
         order_details.append("id", this.state.id);
         order_details.append("manufacturer", this.state.manufacturer);
-        order_details.append("years", JSON.stringify(this.state.years));
+        order_details.append("years", this.state.years);
         order_details.append("condition_description", this.state.condition_description);
-
+        
         axios.post(this.context[5]+"/dashboard.php", order_details, {
             headers: {
                 'Content-Type': 'multipart/form-data' 
@@ -62,29 +63,74 @@ class OrderForm extends Component {
     }
 
     addYearToArray = () => {
-        let year = document.getElementById("years").value;
+        let order_years = this.state.order_years;
         let years = this.state.years;
-        years.push(year);
+        let year1 = document.getElementById("years1").value;
+
+        if( order_years === "range_of_years" ){
+            let year2 = document.getElementById("years2").value;
+            if(year1.length > 0 && year2.length > 0){
+                years.push(year1+"-"+year2);
+            }
+        }else{
+            if(year1.length > 0){
+                years.push(year1);
+            }
+        }
 
         this.setState({ years });
+    }
+
+    selectSingleOrRangeOfYears = (event) => {
+        //let val = event.target.value;
+        let radios = document.getElementsByName("order_years");
+        let val = "";
+        for(let i = 0; i < radios.length; i++){
+            if( radios[i].checked ){
+                val = radios[i].value;
+                break;
+            }
+        }
+        console.log(val);
+        this.setState({ order_years: val });
     }
     
 
     render() { 
+        let to = "";
+        let value = "";
+        if( this.state.order_years === "single_year" ){
+            to = "";
+            value = "";
+        }else if( this.state.order_years === "range_of_years" ){
+            to = <div className="body_dashboard_years_to">to</div>;
+            value = <select id="years2">
+                        <option></option>
+                        {this.state.year_options.map((elem, index) => (
+                            <option key={index}>{elem}</option>
+                        ))}
+                    </select>
+        }
         if( this.state.order_stage === "Order form" ){ 
             return ( 
                 <div className="body_order_form">
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
                     Years<br />
+                    <div className="body_dashboard_signle_or_range_of_years">                    
+                        Single year:<input type="radio" value="single_year" name="order_years" onChange={this.selectSingleOrRangeOfYears} />&nbsp;&nbsp;
+                        Range of years:<input type="radio" value="range_of_years" name="order_years" onChange={this.selectSingleOrRangeOfYears} />
+                    </div>
                     <div className="body_dashboard_years_container">
                         <div className="body_dashboard_years">
-                            <select id="years">
+                            <select id="years1">
                                 <option></option>
                                 {this.state.year_options.map((elem, index) => (
                                     <option key={index}>{elem}</option>
                                 ))}
                             </select>
+                            {to}
+                            {value}
                         </div>
                         <div onClick={this.addYearToArray} className="body_dashboard_add_year_btn">
                             Add year(s)
@@ -94,7 +140,7 @@ class OrderForm extends Component {
                     <div className="body_dashboard_years_container">
                         <div className="body_dashboard_years_selected">
                             {this.state.years.map((elem, index) => (
-                                <div key={index}>{elem}</div>
+                                <div key={index} className="body_dashboard_year_selected">{elem}</div>
                             ))}
                         </div>
                     </div>
@@ -102,7 +148,6 @@ class OrderForm extends Component {
                     Condition Description<br />
                     <textarea onChange={this.setInput} type="text" id="condition_description" placeholder="Condition description" /><br />
                     <div className="body_order_terms">
-                        <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                     </div>
                     <div onClick={() => {this.setState({ order_stage: "Payment form" })}} className="body_order_btn">
                         Next: Payment Information
@@ -118,7 +163,6 @@ class OrderForm extends Component {
                     </p>
                     <form onSubmit={this.placeOrder}>
                         <div className="body_order_terms">
-                            <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                         </div>
                         <div onClick={this.placeOrder} className="body_order_btn">
                             Place your order
