@@ -35,9 +35,9 @@ class Signin extends Component {
 
 
     goToDashboard = (email, id) => {
-        localStorage.setItem("flashcards_stdtkto_active", true);
-        localStorage.setItem("flashcards_stdtkto_email", email);
-        localStorage.setItem("flashcards_stdtkto_id", id);
+        localStorage.setItem("scgproject_stdtkto_active", true);
+        localStorage.setItem("scgproject_stdtkto_email", email);
+        localStorage.setItem("scgproject_stdtkto_id", id);
         this.context[1](true);
         this.setState({ go_to_dashboard: true });
     }

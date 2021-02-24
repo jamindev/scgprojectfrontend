@@ -38,12 +38,7 @@ class Dashboard extends Component {
     setAccountDetails = ( details ) => {
         this.setState({ first_name: details.first_name });
         this.setState({ city: details.city });
-        // this.setState({ flashcard_sets_bought: details.flashcard_sets_bought }, () => {
-        // fetch(this.context[5]+"/all_sets")
-        //     .then(res => res.json())
-        //     .then((body) => (body.response_msg === "posted" ? this.setSets( body.returned_sets ): this.setState({ response: "Could not scan categories table!" }) ))
-        //     .catch((error) => console.log(error+"Error: unable to add category!"))
-        // });
+        console.log(JSON.stringify(details));
     }
 
     
