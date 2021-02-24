@@ -50,10 +50,18 @@ class OrderForm extends Component {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(body => (body.data.response === "order_placed" ? this.setState({order_stage: "Confirmation"}) : console.log("An error occured")))
+        .then(body => (body.data.response === "order_placed" ? this.resetOrderForm : console.log("An error occured")))
         .catch(e => console.log(e));
     }
 
+
+    resetOrderForm = () => {
+        this.setState({ order_stage: "Confirmation" });
+        this.setState({ years: [] });
+
+        document.getElementById("manufacturer").value = "";
+        document.getElementById("condition_description").value = "";
+    }
 
     setInput = (event) => {
         const id = event.target.id;
