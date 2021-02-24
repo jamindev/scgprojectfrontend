@@ -10,10 +10,9 @@ class Dashboard extends Component {
         super(props);
         this.state = { 
             details: {},
-            name: "",
-            sets: [],
-            purchased_sets: [],
-            purchased_sets_msg: "",
+            first_name: "",
+            city: "",
+            num_of_orders: 0,
             stay_on_dashboard: true
         }
     }
@@ -38,7 +37,7 @@ class Dashboard extends Component {
     setAccountDetails = ( details ) => {
         this.setState({ first_name: details.first_name });
         this.setState({ city: details.city });
-        console.log(JSON.stringify(details));
+        this.setState({ num_of_orders: details.num_of_orders });
     }
 
     
@@ -59,7 +58,7 @@ class Dashboard extends Component {
                             Welcome, {this.state.first_name}
                         </div>
                         <div className="body_dashboard_order_stats">
-                            Num orders pending
+                            {this.state.num_of_orders} orders pending
                         </div>
                     </div>
                     <div className="body_dashboard_container2">
