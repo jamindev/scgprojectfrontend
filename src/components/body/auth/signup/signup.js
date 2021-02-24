@@ -33,49 +33,6 @@ class Signup extends Component {
     static contextType = Context;
 
     signup = async (event) => {
-        // const first_name = this.state.name;
-        // const last_name = this.state.name;
-        // const email = this.state.email;
-        // const password = this.state.password;
-        // const confirm_password = this.state.confirm_password;
-        // const gender = this.state.gender;
-        // const date_of_birth = this.state.date_of_birth;
-        // const address_1 = this.state.address_1;
-        // const address_2 = this.state.address_2;
-        // const city = this.state.city;
-        // const country = this.state.country;
-        // const state_or_region = this.state.state_or_region;
-
-        // if( password !== confirm_password ){
-        //     this.setState({"password_error": "Make sure the passwords match."});
-        //     return;
-        // }
-
-        // let data = {
-        //     first_name: first_name,
-        //     last_name: last_name,
-        //     email: email,
-        //     password: password,
-        //     gender: gender,
-        //     date_of_birth: date_of_birth,
-        //     address_1: address_1,
-        //     address_2: address_2,
-        //     city: city,
-        //     country: country,
-        //     state_or_region: state_or_region
-        // };
-            
-        // fetch(this.context[5], {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     //mode: 'no-cors',
-        //     headers: {
-        //       'Content-Type': 'application/x-www-form-urlencoded' //'application/json'
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(body => (body.response === "posted" ? this.goToDashboard(body.email, body.id) : body.response === "Email is already being used!"? this.setState({ email_exists_msg: body.response }): console.log(JSON.stringify(body))))
-        // .catch(e => console.log(e));
         event.preventDefault();
 
         let data = new FormData();
@@ -120,8 +77,7 @@ class Signup extends Component {
         this.context[1](true);
         this.setState({ go_to_dashboard: true})
         //send email
-        // fetch(this.context[5]+"/signup_confirmation_email?email="+this.state.email)
-        // .then(res => res.json())
+        // axios.get(this.context[5]+"/signup_confirmation_email?email="+this.state.email)
         // .then(body => (body.response_msg === "success" ? this.setState({ go_to_myaccount: true}) : body.response_msg === "Email is already being used!"? this.setState({ email_exists_msg: body.response_msg }): console.log("Error!")))
         // .catch(e => console.log(e));
     }

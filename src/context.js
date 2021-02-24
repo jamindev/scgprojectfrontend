@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const Context = createContext();
 
 export const Provider = props => { 
-    let [signed_in, setSignedin] = useState(localStorage.getItem("flashcards_stdtkto_active") === "true"); 
+    let [signed_in, setSignedin] = useState(localStorage.getItem("scgproject_stdtkto_active") === "true"); 
     let [sets_in_cart, updatecart] = useState(0); 
          
     let data = {

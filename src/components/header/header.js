@@ -16,7 +16,7 @@ class Header extends Component {
 
     componentDidMount = () => {
         this.setState({ signed_ina: this.context[2] });
-        if(localStorage.getItem("flashcards_stdtkto_email") !== null ){
+        if(localStorage.getItem("scgproject_stdtkto_email") !== null ){
             
         }else{
             this.context[3](0);
@@ -26,11 +26,9 @@ class Header extends Component {
 
     signOut = () => {
         this.context[1](false);
-        localStorage.setItem("flashcards_stdtkto_active", false);
-        localStorage.setItem("flashcards_stdtkto_id", "");
-        localStorage.setItem("flashcards_stdtkto_email", "");  
-        localStorage.setItem("flashcards_stdtkto_flashcard_sets_bought", []);
-        localStorage.setItem("flashcards_stdtkto_sets_in_cart", 0);
+        localStorage.setItem("scgproject_stdtkto_active", false);
+        localStorage.setItem("scgproject_stdtkto_id", "");
+        localStorage.setItem("scgproject_stdtkto_email", "");  
         this.setState({ signed_ina: false });     
         window.location.href = "/";
     }

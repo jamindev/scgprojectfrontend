@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {Context} from '../../../context.js';
 import axios from 'axios';
 import './orderform.css';
@@ -16,11 +15,15 @@ class OrderForm extends Component {
             manufacturer: "",
             years: [],
             condition_description: "",
-            order_stage: "Order form"
+            order_stage: "Order form",
+            manufacturer_error_msg: "",
+            years_error_msg: ""
         }
     }
 
+
     static contextType = Context;
+
 
     componentDidMount = () => {
         const id = localStorage.getItem("scgproject_stdtkto_id");
@@ -33,6 +36,26 @@ class OrderForm extends Component {
             year_options.push(currentYear - i)
         }
         this.setState({year_options});
+    }
+
+
+    goToPaymentForm = () => {
+        let manufacturer = this.state.manufacturer;
+        let years = this.state.years;
+        if( manufacturer.length === 0 || !manufacturer.replace(/\s/g, '').length){
+            this.setState({ manufacturer_error_msg: "Manufacturer field is empty." });
+            return;
+        }else{
+            this.setState({ manufacturer_error_msg: "" });
+        }
+        if( years.length === 0 ){
+            this.setState({ years_error_msg: "No year(s) have been chosen." });
+            return;
+        }else{
+            this.setState({ years_error_msg: "" });
+        }
+
+        this.setState({ order_stage: "Payment form" });
     }
 
 
@@ -50,7 +73,7 @@ class OrderForm extends Component {
                 'Content-Type': 'multipart/form-data' 
             }
         })
-        .then(body => (body.data.response === "order_placed" ? this.resetOrderForm : console.log("An error occured")))
+        .then(body => (body.data.response === "order_placed" ? this.resetOrderForm() : console.log("An error occured")))
         .catch(e => console.log(e));
     }
 
@@ -58,10 +81,9 @@ class OrderForm extends Component {
     resetOrderForm = () => {
         this.setState({ order_stage: "Confirmation" });
         this.setState({ years: [] });
-
-        document.getElementById("manufacturer").value = "";
-        document.getElementById("condition_description").value = "";
+        this.setState({ order_years: "single_year" });
     }
+
 
     setInput = (event) => {
         const id = event.target.id;
@@ -69,6 +91,7 @@ class OrderForm extends Component {
 
         this.setState({ [id]: val });
     }
+
 
     addYearToArray = () => {
         let order_years = this.state.order_years;
@@ -89,6 +112,7 @@ class OrderForm extends Component {
         this.setState({ years });
     }
 
+
     selectSingleOrRangeOfYears = (event) => {
         //let val = event.target.value;
         let radios = document.getElementsByName("order_years");
@@ -99,9 +123,10 @@ class OrderForm extends Component {
                 break;
             }
         }
-        console.log(val);
+
         this.setState({ order_years: val });
     }
+
 
     removeYear = (index) => {
         let years = this.state.years;
@@ -129,8 +154,15 @@ class OrderForm extends Component {
         if( this.state.order_stage === "Order form" ){ 
             return ( 
                 <div className="body_order_form">
+                    <div className="error_msg">
+                        { this.state.manufacturer_error_msg }
+                    </div>
                     Manufacturer<br />
                     <input onChange={this.setInput} type="text" id="manufacturer" placeholder="Manufacturer" /><br />
+                    
+                    <div className="error_msg">
+                        { this.state.years_error_msg }
+                    </div>
                     Years<br />
                     <div className="body_dashboard_signle_or_range_of_years">                    
                         Single year:<input type="radio" value="single_year" name="order_years" onChange={this.selectSingleOrRangeOfYears} />&nbsp;&nbsp;
@@ -164,7 +196,7 @@ class OrderForm extends Component {
                     <textarea onChange={this.setInput} type="text" id="condition_description" placeholder="Condition description" /><br />
                     <div className="body_order_terms">
                     </div>
-                    <div onClick={() => {this.setState({ order_stage: "Payment form" })}} className="body_order_btn">
+                    <div onClick={this.goToPaymentForm} className="body_order_btn">
                         Next: Payment Information
                     </div>
                 </div>

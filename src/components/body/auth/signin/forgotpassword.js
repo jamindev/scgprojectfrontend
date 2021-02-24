@@ -13,12 +13,12 @@ class ForgotPassword extends Component {
     static contextType = Context;
 
     sendPassword = () => {
-        const email = this.state.email;
+        // const email = this.state.email;
 
-        fetch(this.context[5]+"/sendpassword?email="+email)
-        .then(res => res.json())
-        .then(body => (body.response_msg === "success" ? this.setState({ passwordsent: true }) : body.response_msg === "invalid credentials" ? this.setState({ signin_error_msg: "This email does not exist in our system!" }): console.log("Error!")))
-        .catch(e => console.log(e));
+        // fetch(this.context[5]+"/sendpassword?email="+email)
+        // .then(res => res.json())
+        // .then(body => (body.response_msg === "success" ? this.setState({ passwordsent: true }) : body.response_msg === "invalid credentials" ? this.setState({ signin_error_msg: "This email does not exist in our system!" }): console.log("Error!")))
+        // .catch(e => console.log(e));
     }
 
 
@@ -45,7 +45,7 @@ class ForgotPassword extends Component {
             return ( 
                 <div className="body_signin">
                     <div className="body_signin_heading">
-                        Password Recovery
+                        Password Recovery (Not yet implemented)
                     </div>
                     <div className="body_signin_form">
                         <div className="error_msg">
