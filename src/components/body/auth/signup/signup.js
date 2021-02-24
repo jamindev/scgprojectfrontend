@@ -120,7 +120,7 @@ class Signup extends Component {
                     <div className="body_signup_heading">
                         Sign up
                     </div>
-                    <form onSubmit={this.signin}>
+                    <form onSubmit={this.signup}>
                         <div className="body_signup_form">
                             <div className="body_signup_form1">
                                 First Name<br />
@@ -174,7 +174,7 @@ class Signup extends Component {
                                     <div>By signing up you agree to our <Link to="./terms">Terms of Use</Link> and <Link to="./privacy">Privacy Policies</Link></div>
                                 </div>
                                 <div onClick={this.signup} className="body_signup_btn">
-                                    Sign Up
+                                    <button type="submit">Sign Up</button>
                                 </div>
                             </div>
                         </div>

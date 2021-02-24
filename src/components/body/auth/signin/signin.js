@@ -23,7 +23,8 @@ class Signin extends Component {
     }
 
 
-    signin = () => {
+    signin = (e) => {
+        e.preventDefault();
         const email = this.state.email;
         const password = this.state.password;
 
@@ -77,7 +78,7 @@ class Signin extends Component {
                         <input onChange={this.setInput} type="password" id="password" placeholder="password" /><br />
                         <br />
                         <div onClick={this.signin} className="body_signin_btn">
-                            Sign In
+                            <button type="submit">Sign In</button>
                         </div>
                     </form>
                     <div className="body_signin_other_options">

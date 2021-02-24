@@ -77,6 +77,16 @@
     text-decoration: none;
 }
 
+.body_signup_btn button{
+    background: none;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+}
+
 .body_signup_terms{
     display: flex;
     flex-direction: row;
