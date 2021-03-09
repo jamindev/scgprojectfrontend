@@ -14,7 +14,7 @@ export const Provider = props => {
     };
     
     //let api_endpoint = "";
-    let api_endpoint = "http://scgprojectapi-env.eba-tt9fpraf.us-east-1.elasticbeanstalk.com";
+    let api_endpoint = "Scgprojectapi-env-1.eba-tt9fpraf.us-east-1.elasticbeanstalk.com ";
 
     function setSignedIn(status) {
         setSignedin(status);
